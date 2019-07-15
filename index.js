@@ -8,12 +8,15 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import UserTypes from './types/User';
+import RestaurantTypes from './types/Restaurent';
+
 
 import createUser from './resolvers/createUser';
 import loginUser from './resolvers/loginUser';
-
+import addRestaurant from './resolvers/addRestaurant';
 const typeDefs = `
     ${UserTypes}
+    ${RestaurantTypes}
     type Query {
         hello : String
         loginUser(request : loginUserInput) : loginUserResponse
@@ -21,6 +24,7 @@ const typeDefs = `
 
     type Mutation {
         createUser(request : createUserInput) : createdUserResponse
+        addRestaurant(request : restaurantInput) : restaurantResponse
     }
 `;
 
@@ -29,7 +33,8 @@ const resolvers = {
         loginUser
     },
     Mutation : {
-        createUser
+        createUser,
+        addRestaurant
     }
 }
 
@@ -43,12 +48,11 @@ const server = new ApolloServer({
     }
 });
 
-
 const app = express();
 
 app.use(cors());
 
-const PORT = 4000;
+const PORT = 4001;
 
 server.applyMiddleware({ app });
 

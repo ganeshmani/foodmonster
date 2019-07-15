@@ -3,7 +3,9 @@ export default `
   input createUserInputData {
      name : String!
      email : String!
-     password : String!        
+     password : String! 
+     lat : Float!
+     long : Float!       
   }
 
 

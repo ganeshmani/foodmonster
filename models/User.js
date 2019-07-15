@@ -17,6 +17,17 @@ const userSchema = new Mongoose.Schema({
     },
     salt : {
         type : String
+    },
+    location : {
+        type : {
+            type : String,
+            enum : ['Point'],
+            required : true
+        },
+        coordinates : {
+            type : [Number],
+            required : true
+        }
     }
 });
 
@@ -40,11 +51,11 @@ class user {
         }
     }
 
-    static validatePassword(userInfo) {
+    static validatePassword(userInfo,password) {
 
-        const hash = crypto.pbkdf2Sync(userInfo.password,userInfo.salt,10000,512,'sha512').toString('hex');
-
-        return userInfo.hash === hash;
+        const hash = crypto.pbkdf2Sync(password,userInfo.salt,10000,512,'sha512').toString('hex');
+        
+        return userInfo.password === hash;
 
     }
 
@@ -56,7 +67,11 @@ class user {
             name : userInfo.name,
             email : userInfo.email,
             password : hash,
-            salt : salt
+            salt : salt,
+            location : {
+                type : 'Point',
+                coordinates : [ userInfo.lat,userInfo.long ]
+            }
         })
 
         return user.save();

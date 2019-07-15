@@ -3,37 +3,50 @@ import UserModel from '../models/User';
 
 export default async(parent,args,context) => {
 
-    console.log("args",args);
-
     //args.request.data.name
 
-    let userInfo = {
-        name : args.request.data.name,
-        email : args.request.data.email,
-        password : args.request.data.password
-    }
+    try{
 
-    let user = await UserModel.getUserByEmail(userInfo.email);
-
-    if(!user) {
-
-        let userCollection  = await UserModel.createUser(userInfo);
-
-        return {
-            success : true,
-            data : { 
-                name :  userCollection.name, 
-                email : userCollection.email 
-            }
+        let userInfo = {
+            name : args.request.data.name,
+            email : args.request.data.email,
+            password : args.request.data.password,
+            lat : args.request.data.lat,
+            long : args.request.data.long
         }
-
+    
+        let user = await UserModel.getUserByEmail(userInfo.email);
+        
+        if(!user) {
+            
+            let userCollection  = await UserModel.createUser(userInfo);
+    
+            return {
+                success : true,
+                data : { 
+                    name :  userCollection.name, 
+                    email : userCollection.email 
+                }
+            }
+    
+        }
+    
+        else{
+            return {
+                success : false,
+                data : null
+            }
+    
+        }
+        
     }
+    catch(e){
 
-    else{
         return {
             success : false,
             data : null
         }
 
     }
+    
 }
