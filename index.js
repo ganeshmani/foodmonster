@@ -15,6 +15,7 @@ import createUser from './resolvers/createUser';
 import loginUser from './resolvers/loginUser';
 import getAllRestaurants from './resolvers/getAllRestaurants';
 import addRestaurant from './resolvers/addRestaurant';
+import searchRestaurant from './resolvers/searchRestaurant';
 const typeDefs = `
     ${CommonTypes}
     ${UserTypes}
@@ -35,7 +36,8 @@ const typeDefs = `
 const resolvers = {
     Query : {
         loginUser,
-        getAllRestaurants
+        getAllRestaurants,
+        searchRestaurant
     },
     Mutation : {
         createUser,

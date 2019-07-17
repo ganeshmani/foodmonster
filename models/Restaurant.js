@@ -48,6 +48,20 @@ class Restaurant {
 
         return restaurent.save();
     }
+
+    static searchRestaurant(lat,long) {
+        
+        return this.aggregate([
+            {
+                '$geoNear' : {
+                    'near' :{ type : "Point", coordinates : [ lat,long ] },
+                    'spherical' : true,
+                    'distanceField' : 'dist',
+                    'maxDistance' : 50000
+                }
+            }
+        ]).exec();
+    }
 }
 
 restaurentSchema.loadClass(Restaurant);
