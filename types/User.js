@@ -30,10 +30,12 @@ export default `
   type loginUserResponse {
     success : Boolean  
     data : userData
+    error : Error
 }
 
   type createdUserResponse{
       success : Boolean!
       data : userData
+      error : Error
   }
 `

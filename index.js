@@ -9,17 +9,21 @@ import cors from 'cors';
 
 import UserTypes from './types/User';
 import RestaurantTypes from './types/Restaurent';
-
+import CommonTypes from './types/Common';
 
 import createUser from './resolvers/createUser';
 import loginUser from './resolvers/loginUser';
+import getAllRestaurants from './resolvers/getAllRestaurants';
 import addRestaurant from './resolvers/addRestaurant';
 const typeDefs = `
+    ${CommonTypes}
     ${UserTypes}
     ${RestaurantTypes}
     type Query {
         hello : String
         loginUser(request : loginUserInput) : loginUserResponse
+        getAllRestaurants : restaurantsResponse
+        searchRestaurant(request : searchRestaurantInput!) : restaurantsResponse
     }
 
     type Mutation {
@@ -30,7 +34,8 @@ const typeDefs = `
 
 const resolvers = {
     Query : {
-        loginUser
+        loginUser,
+        getAllRestaurants
     },
     Mutation : {
         createUser,

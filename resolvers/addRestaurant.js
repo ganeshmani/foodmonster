@@ -5,7 +5,6 @@ export default async(parent,args,context) => {
     
     try {
 
-
         let restaurantInfo = {
             name : args.request.data.name,
             city : args.request.data.city,
@@ -14,20 +13,23 @@ export default async(parent,args,context) => {
         }
         
         let restaurant = await RestaurantModel.insert(restaurantInfo);
-        console.log("restaurantInfo",restaurant);
+
         return {
             success : true,
-            data : restaurant
+            data : restaurant,
+            error : null
         }
-    
-
-
+        
     }
     catch(e){
         console.log(e);
         return {
             success : false,
-            data : null
+            data : null,
+            error : {
+                message : e,
+                status : 500
+            }
         }
     }
 

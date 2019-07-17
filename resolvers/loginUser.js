@@ -17,7 +17,8 @@ export default async(parent,args,context) => {
     
                 return {
                     success : true,
-                    data : userCollection
+                    data : userCollection,
+                    error : null
                 }
     
             }
@@ -25,7 +26,11 @@ export default async(parent,args,context) => {
     
                 return {
                     success : false,
-                    data : null
+                    data : null,
+                    error : {
+                        message : "Invalid Credentials",
+                        status : 400
+                    }
                 }
     
             }
@@ -35,7 +40,11 @@ export default async(parent,args,context) => {
     
             return {
                 success : false,
-                data : null
+                data : null,
+                error : {
+                    message : "User Not Found",
+                    status : 404
+                }
             }
     
         }
@@ -45,8 +54,13 @@ export default async(parent,args,context) => {
 
         return {
             success : false,
-            data : null
+            data : null,
+            error : {
+                message : e,
+                status : 500
+            }
         }
+
 
     }
 

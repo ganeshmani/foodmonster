@@ -31,6 +31,11 @@ class Restaurant {
         })
     }
 
+    static getAllRestaurants() {
+
+        return this.find().exec();
+    }
+
     static insert(restaurantInfo) {
         const restaurent = this({
             name : restaurantInfo.name,

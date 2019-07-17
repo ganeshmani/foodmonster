@@ -26,7 +26,8 @@ export default async(parent,args,context) => {
                 data : { 
                     name :  userCollection.name, 
                     email : userCollection.email 
-                }
+                },
+                error : null
             }
     
         }
@@ -34,7 +35,11 @@ export default async(parent,args,context) => {
         else{
             return {
                 success : false,
-                data : null
+                data : null,
+                error : {
+                    message : "User Already Exists",
+                    status : 400
+                }
             }
     
         }
@@ -44,7 +49,11 @@ export default async(parent,args,context) => {
 
         return {
             success : false,
-            data : null
+            data : null,
+            error : {
+                message : e,
+                status : 500
+            }
         }
 
     }
