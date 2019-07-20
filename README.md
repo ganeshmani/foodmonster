@@ -84,15 +84,7 @@ $ npm install
  2  | **.bablerc** | Project wide configuration for bable
 
 
-**Steps to create a pull request**
-
-1.  Make a PR to `master` branch. It is really important that you make a PR and not directly commit to master, as it will keep master relatively stable, and will allow other team members to review your changes and be on the same page as you are. It will also help you learn from the other team members.
-2.  Comply with the best practices and guidelines.
-3.  Once the review is done and no changes are requested, it can be merged into master.  
-4.  Delete the branch once it is merged into master.
-
-> To keep the development fast, at least in the initial stage, the team needs to make sure that every PR is reviewed within 24 hours.
-
+### PR's and Contributions are Welcome
 
 # :page_facing_up: Resources
 
